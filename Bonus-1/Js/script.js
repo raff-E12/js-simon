@@ -7,7 +7,7 @@ let index_contdown = document.getElementById('countdown');
 let cont_numbers = document.getElementById('numbers-list');
 let input_memory = document.getElementById('answers-form');
 
-//Funzione di realizzazione del contdown e Implementazione dei relativi sequzioni di codice
+//Funzione di realizzazione del contdown e confronto numeri delle seguenti input dati
 
 const ContDownHandleInput = (counts, parentnode, inputnode)=>{
     let count = 10;
@@ -32,6 +32,40 @@ const NumberRandomGenHandle = (listparent)=>{
         listparent.append(list_number);
         InputNumberCheckHandle(list_number);
     }
+}
+
+const NumberHandleList = (value)=>{
+    const input_number = document.getElementById('input-group').querySelectorAll('.form-control');
+    let text_message = document.getElementById('message');
+    let data_number = null;
+    const value_inp = [];
+    const value_data = [];
+    for (let index = 0; index < input_number.length; index++) {
+        data_number = Number(input_number[index].value);
+        value_data.push(value);
+        value_inp.push(data_number);
+    }
+
+    for (let index = 0; index < value_inp.length; index++) {
+        if (value_data[index] === value_inp[index]) {
+            console.log(`${value_data[index]} è uguale ${value_inp[index]}`)
+            text_message.textContent = `Complimenti hai indovinato i numeri [${value_data[index]}]`;
+            break
+        } else {
+            console.log(`${value_data[index]} è non ${value_inp[index]}`)
+            text_message.textContent = 'Riprova, ci sei dei valori che non sei riuscito da indovinare.'
+            break
+        }
+    }
+}
+
+const InputNumberCheckHandle = (list)=>{
+    let number_value = list.getAttribute('data-number');
+    let btn_conf_inp = document.getElementById('btn-conf');
+    btn_conf_inp.addEventListener('click', (e)=>{
+        NumberHandleList(number_value);
+        e.preventDefault();
+    });
 }
 
 NumberRandomGenHandle(cont_numbers);
