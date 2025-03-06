@@ -15,3 +15,7 @@
 input {
 	width: 80px !important;
 }
+
+#answers-form{
+	flex-direction: column;
+}
