@@ -30,7 +30,6 @@ const NumberRandomGenHandle = (listparent)=>{
         list_number.setAttribute('id', index);
         list_number.textContent = Number_number;
         listparent.append(list_number);
-        InputNumberCheckHandle(list_number);
     }
 }
 
