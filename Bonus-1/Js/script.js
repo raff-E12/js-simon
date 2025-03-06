@@ -40,7 +40,7 @@ const NumberRandomGenHandle = (listparent) => {
 const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
     btn_conf_inp.addEventListener('click', (e) => {
         let input_number = document.querySelectorAll('.form-control');
-        let correctGuesses = [];
+        let correctGuesses = []; //Utilizzo degli array per il realtivo confronto in condizione tra input e numeri randomici
         let incorrectGuesses = [];
 
         // Loop attraverso i campi di input e confronta con i numeri generati
