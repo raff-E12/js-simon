@@ -56,8 +56,12 @@ const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
         // Mostra il risultato
         let text_message = document.getElementById('message');
         if (correctGuesses.length === randomNumbers.length) {
+            text_message.classList.add('text-success');
+            text_message.classList.remove('text-danger');
             text_message.textContent = `Complimenti! Hai indovinato tutti i numeri: [${correctGuesses.join(', ')}]`;
         } else {
+            text_message.classList.add('text-danger');
+            text_message.classList.remove('text-success');
             text_message.textContent = `Riprova! Hai indovinato: [${correctGuesses.join(', ')}], ma i numeri errati sono: [${incorrectGuesses.join(', ')}].`;
         }
 
