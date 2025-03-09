@@ -18,7 +18,7 @@ const ContDownHandleInput = (counts, parentnode, inputnode) => {
             parentnode.classList.add('d-none');
             inputnode.classList.remove('d-none');
         }
-    }, 1200);
+    }, 900);
 }
 
 // Funzione per generare numeri casuali e mostrarli nella lista
@@ -46,11 +46,17 @@ const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
         // Loop attraverso i campi di input e confronta con i numeri generati
         for (let i = 0; i < input_number.length; i++) {
             let data_number = Number(input_number[i].value);
+           if (data_number > 0) {
             if (randomNumbers.includes(data_number)) {
                 correctGuesses.push(data_number);
             } else {
                 incorrectGuesses.push(data_number);
             }
+           } else{
+            text_message.classList.add('text-danger');
+            text_message.classList.remove('text-success');
+            text_message.textContent = "Input non valido"
+           }
         }
 
         // Mostra il risultato
@@ -58,11 +64,11 @@ const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
         if (correctGuesses.length === randomNumbers.length) {
             text_message.classList.add('text-success');
             text_message.classList.remove('text-danger');
-            text_message.textContent = `Complimenti! Hai indovinato tutti i numeri: [${correctGuesses.join(', ')}]`;
+            text_message.textContent = `Complimenti! Hai indovinato tutti i numeri: (${correctGuesses.join(', ')})`;
         } else {
             text_message.classList.add('text-danger');
             text_message.classList.remove('text-success');
-            text_message.textContent = `Riprova! Hai indovinato: [${correctGuesses.join(', ')}], ma i numeri errati sono: [${incorrectGuesses.join(', ')}].`;
+            text_message.textContent = `Riprova! Hai indovinato: ${correctGuesses.join(', ')}, ma i numeri errati sono: [${incorrectGuesses.join(', ')}].`;
         }
 
         e.preventDefault();
