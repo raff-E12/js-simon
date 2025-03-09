@@ -49,7 +49,7 @@ const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
         for (let i = 0; i < input_number.length; i++) {
             let data_number = Number(input_number[i].value);
 
-            if (data_number <= 0 || isNaN(data_number)) {
+            if (data_number <= 0 || isNaN(data_number)) { //Convalidazione e Controllo input
                 text_message.classList.add('text-danger');
                 text_message.classList.remove('text-success');
                 text_message.textContent = "Input non valido";
@@ -57,7 +57,7 @@ const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
                 return;
             }
     
-            if (userNumbers.includes(data_number)) {
+            if (userNumbers.includes(data_number)) { //Controllo Numeri Ripetizione
                 text_message.classList.add('text-danger');
                 text_message.textContent = `Numero duplicato: ${data_number}. Inserisci numeri diversi.`;
                 e.preventDefault();
@@ -66,7 +66,7 @@ const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
 
             userNumbers.push(data_number);
 
-            if (randomNumbers.includes(data_number)) {
+            if (randomNumbers.includes(data_number)) { //Aggiunta aggiunta dei valori input di confronto
                 correctGuesses.push(data_number);
             } else {
                 incorrectGuesses.push(data_number);
