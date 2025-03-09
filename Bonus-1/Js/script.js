@@ -40,27 +40,41 @@ const NumberRandomGenHandle = (listparent) => {
 const InputNumberCheckHandle = (btn_conf_inp, randomNumbers) => {
     btn_conf_inp.addEventListener('click', (e) => {
         let input_number = document.querySelectorAll('.form-control');
+        let text_message = document.getElementById('message');
         let correctGuesses = []; //Utilizzo degli array per il realtivo confronto in condizione tra input e numeri randomici
         let incorrectGuesses = [];
+        let userNumbers = [];
 
         // Loop attraverso i campi di input e confronta con i numeri generati
         for (let i = 0; i < input_number.length; i++) {
             let data_number = Number(input_number[i].value);
-           if (data_number > 0) {
+
+            if (data_number <= 0 || isNaN(data_number)) {
+                text_message.classList.add('text-danger');
+                text_message.classList.remove('text-success');
+                text_message.textContent = "Input non valido";
+                e.preventDefault();
+                return;
+            }
+    
+            if (userNumbers.includes(data_number)) {
+                text_message.classList.add('text-danger');
+                text_message.textContent = `Numero duplicato: ${data_number}. Inserisci numeri diversi.`;
+                e.preventDefault();
+                return;
+            } 
+
+            userNumbers.push(data_number);
+
             if (randomNumbers.includes(data_number)) {
                 correctGuesses.push(data_number);
             } else {
                 incorrectGuesses.push(data_number);
             }
-           } else{
-            text_message.classList.add('text-danger');
-            text_message.classList.remove('text-success');
-            text_message.textContent = "Input non valido"
-           }
+
         }
 
         // Mostra il risultato
-        let text_message = document.getElementById('message');
         if (correctGuesses.length === randomNumbers.length) {
             text_message.classList.add('text-success');
             text_message.classList.remove('text-danger');
